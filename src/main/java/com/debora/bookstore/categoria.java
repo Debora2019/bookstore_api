@@ -1,15 +1,25 @@
 package com.debora.bookstore;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-public class categoria {
+@Entity
+public class categoria implements Serializable{
+public static final long serialVersionUID = 1L;
+
    @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer id;
    private String nome;
    private String descricao;
+
+   @OneToMany(mappedBy = "categorias")
    private List<livro> livros = new ArrayList<>();
 
 public categoria(){
